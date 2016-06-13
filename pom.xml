@@ -8,7 +8,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>基础库项目</name>
+  <name>中国省市区采集器</name>
   <url>http://www.paul.com</url>
 
   <properties>

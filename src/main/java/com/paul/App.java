@@ -3,8 +3,10 @@ package com.paul;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.github.stuxuhai.jpinyin.PinyinHelper;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.paul.helper.CsvFileWriterHelper;
 import com.paul.model.Region;
@@ -18,6 +20,8 @@ public class App {
 		// setting
 		String filePath = "d:\\area.csv";
 		String provinceCatalogUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2014/";
+		Map<String, RegionTypeEnum> blackCityMap = ImmutableMap.<String, RegionTypeEnum>builder()
+				.put("460200000000", RegionTypeEnum.CITY).build();
 		
 		// Collect
         List<Region> regionList = Lists.newArrayList();
@@ -32,6 +36,12 @@ public class App {
         	// 2. get cities
         	List<Region> cityList = regionSpider.getCities(province);
         	for (Region city : cityList) {
+        		//black list
+        		if (blackCityMap.containsKey(city.getCode())) {
+        			continue;
+        		}
+        		
+        		// set pinyin
         		regionList.add(getRegionWithFirstPinyin(city));
         		println(city);
         		
