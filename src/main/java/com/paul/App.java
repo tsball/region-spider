@@ -20,6 +20,7 @@ public class App {
 		// setting
 		String filePath = "d:\\area.csv";
 		String provinceCatalogUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2014/";
+		// black list: 三沙市 - 没有镇/街道
 		Map<String, RegionTypeEnum> blackCityMap = ImmutableMap.<String, RegionTypeEnum>builder()
 				.put("460200000000", RegionTypeEnum.CITY).build();
 		
